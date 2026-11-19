@@ -1,0 +1,72 @@
+name: 'Run a CleanedWeb API'
+description: 'Run a CleanedWeb catalog API and write its records to a file, ready to commit.'
+author: 'CleanedWeb'
+branding:
+  icon: 'download-cloud'
+  color: 'blue'
+
+inputs:
+  api-key:
+    description: 'CleanedWeb API key with the run scope. Pass it from a repository secret, never as plain text.'
+    required: true
+  api-id:
+    description: 'The catalog API id, for example generated_047a8ebb25911ccf62f4a212 (see https://app.cleanedweb.com/api/catalog/apis).'
+    required: true
+  endpoint-id:
+    description: 'The endpoint id from the API contract. Defaults to "<api-id>_search", which is the endpoint id of every API in the live catalog today.'
+    required: false
+    default: ''
+  input:
+    description: 'The API inputs as a JSON object string, for example {"sort":"desc_stars"}. Must follow the contract input_schema.'
+    required: false
+    default: '{}'
+  max-items:
+    description: 'Stop after this many records. Strongly recommended: runs are charged per record delivered and otherwise continue until the source has no more.'
+    required: false
+    default: ''
+  version:
+    description: 'Pin an API major version (an integer) so a new major cannot change your results. Defaults to the latest major.'
+    required: false
+    default: ''
+  idempotency-key:
+    description: 'Idempotency key for the run (1-200 characters: letters, numbers, . _ : -). Defaults to a key built from github.run_id, github.run_attempt and a fingerprint of the request, so a re-run of the workflow is a new run and two steps with different requests never collide.'
+    required: false
+    default: ''
+  output-path:
+    description: 'File to write, relative to the workspace. Defaults to data/<api-id>.<format>.'
+    required: false
+    default: ''
+  format:
+    description: 'Output format: json (an array of records), jsonl (one record per line) or csv.'
+    required: false
+    default: 'json'
+  wait-timeout:
+    description: 'Seconds to wait for the run (60-86400). Also sent as the run''s own time budget. Default 1800.'
+    required: false
+    default: '1800'
+  allow-empty:
+    description: 'Write the file even when the run returned 0 records. By default an empty result fails the step and leaves the existing file untouched.'
+    required: false
+    default: 'false'
+  base-url:
+    description: 'Run origin. Only change it if your workspace supplies a different one.'
+    required: false
+    default: 'https://broker.cleanedweb.com'
+
+outputs:
+  record-count:
+    description: 'Number of records written to the file.'
+  run-id:
+    description: 'The CleanedWeb run id (also set when the step fails after the run started).'
+  output-path:
+    description: 'Path of the file that was written, relative to the workspace.'
+  stop-reason:
+    description: 'Why the run ended, for example source_exhausted or max_items.'
+  units-charged:
+    description: 'Units charged for the run (one Unit per record delivered).'
+  idempotency-key:
+    description: 'The idempotency key that was used.'
+
+runs:
+  using: 'node24'
+  main: 'dist/index.js'

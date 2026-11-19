@@ -1,0 +1,23 @@
+{
+  "name": "run-api-action",
+  "version": "0.1.0",
+  "private": true,
+  "description": "GitHub Action that runs a CleanedWeb catalog API and writes the records to a file.",
+  "type": "module",
+  "license": "MIT",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "test": "vitest run",
+    "build": "ncc build src/index.js --out dist --target es2022 --license licenses.txt",
+    "check-dist": "npm run build && git diff --exit-code -- dist"
+  },
+  "dependencies": {
+    "@actions/core": "^3.0.1"
+  },
+  "devDependencies": {
+    "@vercel/ncc": "^0.45.0",
+    "vitest": "^5.1.1"
+  }
+}
