@@ -4,8 +4,6 @@ A GitHub Action that runs a [CleanedWeb](https://cleanedweb.com/?utm_source=gith
 
 CleanedWeb turns public website collections into maintained REST APIs that return structured records. You get 5,000 records free once, then prepaid credit from $1 per 1,000 records; a run is charged per record delivered.
 
-> **Pre-release.** The `v1` tag comes with the first release; until then use `cleanedweb/run-api-action@main`.
-
 ## Quick start
 
 ```yaml
