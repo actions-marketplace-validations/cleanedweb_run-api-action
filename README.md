@@ -4,7 +4,7 @@ A GitHub Action that runs a [CleanedWeb](https://cleanedweb.com/?utm_source=gith
 
 CleanedWeb turns public website collections into maintained REST APIs that return structured records. You get 5,000 records free once, then prepaid credit from $1 per 1,000 records; a run is charged per record delivered.
 
-> **Private preview.** This repository is private until it is reviewed. Delete this note, and the "Using it from another private repository" section, before publishing.
+> **Pre-release.** The `v1` tag comes with the first release; until then use `cleanedweb/run-api-action@main`.
 
 ## Quick start
 
@@ -176,10 +176,6 @@ The step fails with a message that says what to do. The API key is never printed
 - **Secrets.** Keep the API key in a repository or organization secret. Do not echo it, and do not pass it to steps you do not trust.
 - **Large results.** The action reads the final body of the run, which holds all records. For very large collections, run with `max-items`, or read `GET /v1/runs/{run_id}/items` yourself.
 - **Node.** The action runs on `node24`.
-
-## Using it from another private repository
-
-Until this repository is public, a workflow in another private repository can use it only if access is allowed: *Settings > Actions > General > Access* on this repository ("Accessible from repositories in the organization").
 
 ## Development
 
