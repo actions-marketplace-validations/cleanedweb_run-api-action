@@ -295,11 +295,12 @@ export function acceptResult(body, runId) {
   const summary = body.summary ?? {};
   const run = body.run ?? {};
   const id = body.delivery?.runId ?? run.run_id ?? runId;
-  const ok = ['completed', 'bounded'].includes(summary.status) && summary.within_scope_passed === true;
+  const finished = run.status === undefined || run.status === 'finished';
+  const ok = ['completed', 'bounded'].includes(summary.status) && summary.within_scope_passed === true && finished;
   if (!ok) {
     throw new RunError(
       'review',
-      `The result needs review and was not written: summary.status is ${summary.status ?? 'missing'}, within_scope_passed is ${summary.within_scope_passed ?? 'missing'}, stop_reason is ${run.stop_reason ?? 'missing'}${id ? ` (run ${id})` : ''}. HTTP 200 alone does not make a result usable.`,
+      `The result needs review and was not written: summary.status is ${summary.status ?? 'missing'}, within_scope_passed is ${summary.within_scope_passed ?? 'missing'}, run.status is ${run.status ?? 'missing'}, stop_reason is ${run.stop_reason ?? 'missing'}${id ? ` (run ${id})` : ''}. HTTP 200 alone does not make a result usable.`,
       { runId: id },
     );
   }

@@ -165,4 +165,12 @@ describe('acceptResult', () => {
     expect(() => acceptResult(out)).toThrow(/within_scope_passed is false/);
     expect(() => acceptResult({ records: [] })).toThrow(/needs review/);
   });
+
+  it('rejects an aborted run even when its summary reads bounded', () => {
+    const aborted = okBody([]);
+    aborted.summary.status = 'bounded';
+    aborted.run.status = 'aborted';
+    aborted.run.stop_reason = 'aborted';
+    expect(() => acceptResult(aborted)).toThrow(/run.status is aborted/);
+  });
 });
