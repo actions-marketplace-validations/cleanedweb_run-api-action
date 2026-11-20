@@ -4,7 +4,7 @@ import { noSleep, okBody, reply, scriptedFetch } from './helpers.js';
 
 const RUN = 'b'.repeat(32);
 const params = (fetch, extra = {}) => ({
-  baseUrl: 'https://broker.cleanedweb.com',
+  baseUrl: 'https://api.cleanedweb.com',
   apiKey: 'sk-secret',
   apiId: 'generated_abc',
   endpointId: 'generated_abc_search',
@@ -25,7 +25,7 @@ describe('executeRun', () => {
     expect(body.records).toHaveLength(1);
     const [call] = fetch.calls;
     expect(call.method).toBe('POST');
-    expect(call.url).toBe('https://broker.cleanedweb.com/v1/catalog/public/apis/generated_abc/endpoints/generated_abc_search/run');
+    expect(call.url).toBe('https://api.cleanedweb.com/v1/catalog/public/apis/generated_abc/endpoints/generated_abc_search/run');
     expect(call.headers).toMatchObject({ Authorization: 'Bearer sk-secret', 'Idempotency-Key': 'key-1', 'Content-Type': 'application/json' });
     expect(call.body).toEqual({ input: { sort: 'desc_stars' }, max_items: 25, timeout_seconds: 1800, wait_seconds: 90 });
   });

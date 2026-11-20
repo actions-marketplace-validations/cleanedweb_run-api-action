@@ -1,6 +1,6 @@
 import { createHash } from 'node:crypto';
 
-export const DEFAULT_BASE_URL = 'https://broker.cleanedweb.com';
+export const DEFAULT_BASE_URL = 'https://api.cleanedweb.com';
 export const FORMATS = ['json', 'jsonl', 'csv'];
 export const DEFAULT_WAIT_TIMEOUT_SECONDS = 1800;
 

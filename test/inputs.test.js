@@ -14,7 +14,7 @@ describe('readInputs', () => {
       format: 'json',
       outputPath: 'data/generated_abc.json',
       waitTimeout: 1800,
-      baseUrl: 'https://broker.cleanedweb.com',
+      baseUrl: 'https://api.cleanedweb.com',
       allowEmpty: false,
     });
     expect(i.maxItems).toBeUndefined();

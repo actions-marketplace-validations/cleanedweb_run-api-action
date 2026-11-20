@@ -38,7 +38,7 @@ This writes `data/generated_047a8ebb25911ccf62f4a212.json`: a JSON array with th
 | `format` | no | `json` | `json` (one array of records, 2-space indented), `jsonl` (one record per line) or `csv`. |
 | `wait-timeout` | no | `1800` | Seconds to wait for the run, 60-86400. It is also sent as the run's own `timeout_seconds`, so a run does not outlive the step that wanted it. |
 | `allow-empty` | no | `false` | Write the file even when the run returned 0 records. |
-| `base-url` | no | `https://broker.cleanedweb.com` | The run origin. Change it only if your workspace supplies a different one. |
+| `base-url` | no | `https://api.cleanedweb.com` | The run origin. Change it only if your workspace supplies a different one. |
 
 ## Outputs
 

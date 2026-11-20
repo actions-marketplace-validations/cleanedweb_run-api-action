@@ -31962,7 +31962,7 @@ var external_node_crypto_ = __nccwpck_require__(7598);
 ;// CONCATENATED MODULE: ./src/inputs.js
 
 
-const DEFAULT_BASE_URL = 'https://broker.cleanedweb.com';
+const DEFAULT_BASE_URL = 'https://api.cleanedweb.com';
 const FORMATS = ['json', 'jsonl', 'csv'];
 const DEFAULT_WAIT_TIMEOUT_SECONDS = 1800;
 

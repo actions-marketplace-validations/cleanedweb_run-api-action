@@ -51,7 +51,7 @@ inputs:
   base-url:
     description: 'Run origin. Only change it if your workspace supplies a different one.'
     required: false
-    default: 'https://broker.cleanedweb.com'
+    default: 'https://api.cleanedweb.com'
 
 outputs:
   record-count:
